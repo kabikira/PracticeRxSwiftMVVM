@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mbk-AV-2Pc">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--No Rx Github Search View Controller-->
+        <scene sceneID="Y5m-Ox-l20">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mlh-f2-oC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="Mbk-AV-2Pc" customClass="NoRxGithubSearchViewController" customModule="PracticeRxSwiftMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4en-GA-K8s">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XxZ-qP-dHY">
+                                <rect key="frame" x="0.0" y="67" width="393" height="751"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGg-cG-XoE">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="foU-Eq-Jxn">
+                                                <rect key="frame" x="8" y="0.0" width="377" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HoE-Ij-q0I">
+                                                        <rect key="frame" x="0.0" y="0.0" width="270" height="50"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KA3-H4-Rtr">
+                                                        <rect key="frame" x="286" y="0.0" width="91" height="51"/>
+                                                        <segments>
+                                                            <segment title="昇順"/>
+                                                            <segment title="降順"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="changeSortType:" destination="Mbk-AV-2Pc" eventType="valueChanged" id="fIw-WM-oV7"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="foU-Eq-Jxn" secondAttribute="trailing" constant="8" id="3tY-aa-nzG"/>
+                                            <constraint firstItem="foU-Eq-Jxn" firstAttribute="top" secondItem="DGg-cG-XoE" secondAttribute="top" id="71l-2s-yZb"/>
+                                            <constraint firstAttribute="bottom" secondItem="foU-Eq-Jxn" secondAttribute="bottom" id="JE0-if-QAC"/>
+                                            <constraint firstItem="foU-Eq-Jxn" firstAttribute="leading" secondItem="DGg-cG-XoE" secondAttribute="leading" constant="8" id="pTh-jd-Cht"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwU-LW-p17">
+                                        <rect key="frame" x="0.0" y="58" width="393" height="693"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Mbk-AV-2Pc" id="Rq5-Lq-tGM"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j1J-Qo-xhs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XxZ-qP-dHY" firstAttribute="top" secondItem="j1J-Qo-xhs" secondAttribute="top" constant="8" id="CHn-fa-mfy"/>
+                            <constraint firstItem="XxZ-qP-dHY" firstAttribute="trailing" secondItem="j1J-Qo-xhs" secondAttribute="trailing" id="CiH-ZF-Hxz"/>
+                            <constraint firstItem="XxZ-qP-dHY" firstAttribute="leading" secondItem="j1J-Qo-xhs" secondAttribute="leading" id="cl9-xx-cq6"/>
+                            <constraint firstItem="j1J-Qo-xhs" firstAttribute="bottom" secondItem="XxZ-qP-dHY" secondAttribute="bottom" id="q16-ix-C4W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sortTypeSegmentedControl" destination="KA3-H4-Rtr" id="XlA-YG-epQ"/>
+                        <outlet property="tableView" destination="HwU-LW-p17" id="gN4-GK-N9K"/>
+                        <outlet property="urlTextField" destination="HoE-Ij-q0I" id="1iP-e8-SAm"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="33" y="123"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

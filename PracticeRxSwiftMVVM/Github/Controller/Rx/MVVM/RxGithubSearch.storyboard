@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UMe-8i-LuU">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Rx Github Search View Controller-->
+        <scene sceneID="qus-pJ-5fD">
+            <objects>
+                <viewController id="UMe-8i-LuU" customClass="RxGithubSearchViewController" customModule="PracticeRxSwiftMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lF4-L5-30Y">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tnF-dP-ZWX">
+                                <rect key="frame" x="0.0" y="67" width="393" height="751"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zw2-VX-QCP">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ia7-Pt-AbY">
+                                                <rect key="frame" x="8" y="0.0" width="377" height="34"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktl-wg-in1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="270" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pVo-cE-AW4">
+                                                        <rect key="frame" x="286" y="0.0" width="91" height="35"/>
+                                                        <segments>
+                                                            <segment title="昇順"/>
+                                                            <segment title="降順"/>
+                                                        </segments>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Ia7-Pt-AbY" secondAttribute="trailing" constant="8" id="Alj-SZ-wAv"/>
+                                            <constraint firstItem="Ia7-Pt-AbY" firstAttribute="top" secondItem="Zw2-VX-QCP" secondAttribute="top" id="MM8-b4-9bl"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ia7-Pt-AbY" secondAttribute="bottom" id="h9S-b8-9in"/>
+                                            <constraint firstItem="Ia7-Pt-AbY" firstAttribute="leading" secondItem="Zw2-VX-QCP" secondAttribute="leading" constant="8" id="xBo-Q8-y4Z"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y6J-er-IzB">
+                                        <rect key="frame" x="0.0" y="42" width="393" height="709"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="UMe-8i-LuU" id="PQc-WD-3gZ"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fDj-et-p8B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fDj-et-p8B" firstAttribute="bottom" secondItem="tnF-dP-ZWX" secondAttribute="bottom" id="83V-VC-2gr"/>
+                            <constraint firstItem="tnF-dP-ZWX" firstAttribute="top" secondItem="fDj-et-p8B" secondAttribute="top" constant="8" id="DQE-ud-ffh"/>
+                            <constraint firstItem="fDj-et-p8B" firstAttribute="trailing" secondItem="tnF-dP-ZWX" secondAttribute="trailing" id="KB7-5b-QNt"/>
+                            <constraint firstItem="tnF-dP-ZWX" firstAttribute="leading" secondItem="lF4-L5-30Y" secondAttribute="leading" id="vYH-2u-Apt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="soryTypeSegmentedControl" destination="pVo-cE-AW4" id="0Db-tT-jta"/>
+                        <outlet property="tableView" destination="y6J-er-IzB" id="GLx-dA-wyJ"/>
+                        <outlet property="urlTextField" destination="ktl-wg-in1" id="G8m-FM-DDc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3Z-J3-Xok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-46" y="185"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
