@@ -34,7 +34,7 @@ class RxGithubSearchNoMVVMViewController: UIViewController {
         //文字列のストリーム (1)
         //0.5sec以上,変化している,nilでない,文字数0以上
         //であればテキストをストリームに流す
-        let searchTextObservable = urlTextField.rx.text
+        let searchTextObservable: Observable<String> = urlTextField.rx.text
             .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .filterNil()
@@ -43,25 +43,28 @@ class RxGithubSearchNoMVVMViewController: UIViewController {
         //ソートのストリーム (2)
         //初回読み込み時または変化があれば
         //sortTypeSegmentedControlのindexをストリームに流す
-        let sortTypeObservable = Observable.merge(
 
+        // ここは下から処理をみたほうがわかりやすい
+        let sortTypeObservable = Observable.merge( //2つのストリームを合体させるmarge
+            // 初期値をながす
             Observable.just(sortTypeSegmentedControl.selectedSegmentIndex),
 
+            // Void型が流れてくる 値が変わったら処理をながす
             sortTypeSegmentedControl.rx.controlEvent(.valueChanged).map { self.sortTypeSegmentedControl.selectedSegmentIndex
             }
-        ).map { $0 == 0 }
+        ).map { $0 == 0 } // ここで流れてきた値を判断
 
         //(1),(2)を合成してストリームに値がきたらAPIを叩いてテーブルをリロード
         let getAPIObservable = Observable.combineLatest(
             searchTextObservable,
             sortTypeObservable
-        ).flatMapLatest({ (searchWord, sortType) -> Observable<[GithubModel]> in
-            GithubAPI.shared.rx.get(searchWord: searchWord, isDesc: sortType)
+        ).flatMapLatest({ (searchWord, sortType) -> Observable<[GithubModel]> in // searchWord, sortType2つが取れる  Obserbable型にしないと型がながれてくれない
+            GithubAPI.shared.rx.get(searchWord: searchWord, isDesc: sortType) // Obserbable型にしないと型がながれてくれないのを勝手にやってくれる
         })
         //-------------------
 
         //------------------
-        //購買する
+        //購買する 値が流れてくる末端
         getAPIObservable
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: {[weak self] (models) in
